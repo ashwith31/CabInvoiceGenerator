@@ -30,10 +30,11 @@ public class CabInvoiceGeneratorTest {
     }
 
     @Test
-    public void givenMultipleRides_ShouldReturnTotalFare(){
+    public void givenMultipleRides_ShouldReturnTotalFareAndAverageFare(){
         Ride[] rides  = { new Ride(2.0, 5),
                 new Ride(0.1, 1)};
-        double fare = cabinvoiceGenerator.calculateFare(rides);
-        Assertions.assertEquals(30, fare);
+        InvoiceSummary summary = cabinvoiceGenerator.calculateFare(rides);
+        InvoiceSummary expectedInvoice = new InvoiceSummary(2, 30.0);
+        Assertions.assertEquals(expectedInvoice, summary);
     }
 }
